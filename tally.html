@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light dark">
+<title>Bucks 2027 Tally</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f1f4f2;--surface:#fff;--surface-2:#e8eeea;--text:#14201a;--muted:#56655d;--line:#d3ddd7;
+  --green:#0f4a32;--green-ink:#fff;--green-soft:#dcebe2;--gold:#c39a1d;--gold-soft:#fbf1d2;--gold-ink:#3a2c00;--focus:#c39a1d;
+  --head:"Bricolage Grotesque",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --body:"Figtree",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#0c1411;--surface:#14201b;--surface-2:#1b2a23;--text:#e5ece8;--muted:#9aaba2;--line:#2a3b33;
+  --green:#3a9e6e;--green-ink:#06120c;--green-soft:#1a3328;--gold:#e2bb45;--gold-soft:#2e2712;--gold-ink:#1d1600;--focus:#e2bb45;
+}}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding:24px 16px 48px}
+h1,h2{font-family:var(--head);margin:0 0 10px;line-height:1.15}
+h1{font-size:30px}h2{font-size:20px}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 16px;margin:0 0 16px}
+label{font-weight:700;display:block;margin:0 0 8px}
+textarea{width:100%;min-height:220px;font-family:var(--mono);font-size:13px;color:var(--text);background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:10px}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
+button{font:inherit;font-weight:800;min-height:48px;padding:10px 18px;border-radius:10px;border:0;cursor:pointer;background:var(--green);color:var(--green-ink)}
+button.alt{background:transparent;color:var(--text);border:1.5px solid var(--line)}
+.opt{display:flex;align-items:center;gap:8px;font-weight:600;margin:0;min-height:44px}
+.opt input{width:20px;height:20px;accent-color:var(--green)}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tr.win td{background:var(--gold-soft);font-weight:700}
+.muted{color:var(--muted);font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
+.stat{background:var(--surface-2);border-radius:10px;padding:10px 12px}
+.stat b{display:block;font-family:var(--head);font-size:28px}
+pre{font-family:var(--mono);font-size:13px;white-space:pre-wrap;background:var(--surface-2);border-radius:10px;padding:12px;margin:0}
+ul{margin:0;padding-left:20px}
+#out[hidden]{display:none}
+.warn{color:#b3261e;font-weight:600}
+@media (prefers-color-scheme: dark){.warn{color:#ff8a80}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>Bucks 2027 tally</h1>
+  <p class="muted">Paste every WhatsApp reply below, in any order and in one block. Chat timestamps and names in front of lines are fine. If someone votes twice, their latest reply counts.</p>
+
+  <section class="card">
+    <label for="paste">Replies</label>
+    <textarea id="paste" placeholder="BUCKS VOTE v1 - Dave&#10;Status: In&#10;...&#10;END"></textarea>
+    <div class="row">
+      <button type="button" id="go">Tally</button>
+      <label class="opt"><input type="checkbox" id="onlyIn"> Ignore votes from "Can't make it"</label>
+    </div>
+    <p class="warn" id="msg" role="status"></p>
+  </section>
+
+  <div id="out" hidden>
+    <section class="card"><h2>Headcount</h2><div class="stats" id="head"></div><p class="muted" id="who"></p></section>
+    <section class="card"><h2>Destinations</h2><p class="muted">2 points for 1st, 1 for 2nd, minus 1 for No.</p><div id="dest"></div></section>
+    <section class="card"><h2>Budget</h2><div id="budget"></div></section>
+    <section class="card"><h2>Arrival</h2><div id="arrive"></div></section>
+    <section class="card"><h2 id="wkHead">Weekend</h2><p class="muted" id="wkNote"></p><div id="weekend"></div></section>
+    <section class="card"><h2>Must-haves</h2><div id="must"></div></section>
+    <section class="card"><h2>Notes</h2><div id="notes"></div></section>
+    <section class="card">
+      <h2>Summary for Claude</h2>
+      <pre id="summary" tabindex="0"></pre>
+      <div class="row"><button type="button" id="copy">Copy summary</button><span id="copyMsg" class="muted" role="status"></span></div>
+    </section>
+  </div>
+</main>
+
+<script>
+const DESTS = ['Gold Coast', 'Melbourne', 'Adelaide'];
+const STATUS = ['In', 'Probably', "Can't make it"];
+const BUDGET = ['Up to $600', '$600-800', '$800-1,000', '$1,000+'];
+const ARRIVE = ['Saturday morning', 'Friday night', 'Saturday arvo or later'];
+const SLOTS = ['Saturday daytime', 'Saturday afternoon', 'Saturday night', 'Sunday daytime', 'Sunday night', 'Monday'];
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm = s => String(s || '').replace(/[‘’]/g, "'").replace(/[–—]/g, '-').replace(/ /g, ' ').trim();
+const isBlank = v => !v || v === '-';
+// split on commas that are not inside brackets, so "Adventure activity (skydive, jet ski)" stays whole
+const list = v => isBlank(v) ? [] : v.split(/,(?![^()]*\))/).map(x => x.trim()).filter(Boolean);
+// strip a WhatsApp prefix such as "[18/11/26, 9:41 pm] Dave Smith: " or "18/11/2026, 21:41 - Dave: "
+const stripPrefix = l => l.replace(/^\s*\[?\d{1,2}[\/.]\d{1,2}[\/.]\d{2,4},?\s+\d{1,2}:\d{2}(?::\d{2})?\s*(?:[ap]\.?m\.?)?\]?\s*(?:-\s*)?[^:]{1,40}:\s*/i, '');
+
+function parse(text){
+  const lines = norm(text).replace(/\r/g, '').split('\n').map(stripPrefix);
+  const out = []; let cur = null, inNotes = false;
+  for (const raw of lines) {
+    const l = raw.trimEnd();
+    const h = l.match(/BUCKS VOTE v1\s*-\s*(.*)$/i);
+    if (h) { if (cur) out.push(cur); cur = {name: h[1].trim(), weekend: {}, notes: ''}; inNotes = false; continue; }
+    if (!cur) continue;
+    if (/^\s*END\s*$/.test(l)) { out.push(cur); cur = null; continue; }
+    let m;
+    if ((m = l.match(/^\s*Notes:\s?(.*)$/))) { cur.notes = m[1]; inNotes = true; continue; }
+    if (inNotes) { cur.notes += '\n' + l; continue; }
+    if ((m = l.match(/^\s*My weekend \((.*)\):\s*$/))) { cur.wkDest = m[1].trim(); continue; }
+    if ((m = l.match(/^\s*-\s*([^:]+):\s*(.*)$/)) && SLOTS.includes(m[1].trim())) { cur.weekend[m[1].trim()] = m[2].trim(); continue; }
+    if ((m = l.match(/^\s*(Status|1st|2nd|No|Budget|Arrive|Must-haves):\s*(.*)$/))) cur[m[1]] = m[2].trim();
+  }
+  if (cur) out.push(cur); // missing END: keep what we have
+  // de-dupe by name, latest wins (keeps first-seen order of names)
+  const map = new Map();
+  out.forEach(r => { r.notes = r.notes.trim(); const k = r.name.toLowerCase().replace(/\s+/g, ' '); if (map.has(k)) map.delete(k); map.set(k, r); });
+  return {all: out.length, replies: [...map.values()]};
+}
+
+function count(arr){ const m = new Map(); arr.forEach(x => m.set(x, (m.get(x) || 0) + 1)); return m; }
+function table(rows, head){
+  return `<table><thead><tr>${head.map((h, i) => `<th${i ? ' class="n"' : ''}>${esc(h)}</th>`).join('')}</tr></thead><tbody>` +
+    rows.map(r => `<tr${r.win ? ' class="win"' : ''}>${r.cells.map((c, i) => `<td${i ? ' class="n"' : ''}>${esc(c)}</td>`).join('')}</tr>`).join('') + '</tbody></table>';
+}
+function breakdown(values, order){
+  const c = count(values), keys = [...order, ...[...c.keys()].filter(k => !order.includes(k))];
+  return keys.filter(k => c.get(k) || order.includes(k)).map(k => [k, c.get(k) || 0]);
+}
+
+function tally(){
+  const text = $('#paste').value;
+  const {all, replies} = parse(text);
+  if (!replies.length) { $('#msg').textContent = 'No replies found. Each one should start with "BUCKS VOTE v1 -".'; $('#out').hidden = true; return; }
+  const dupes = all - replies.length;
+  $('#msg').textContent = '';
+  const onlyIn = $('#onlyIn').checked;
+  const voters = onlyIn ? replies.filter(r => r.Status !== "Can't make it") : replies;
+  const S = []; // summary lines
+
+  // Headcount
+  const st = breakdown(replies.map(r => isBlank(r.Status) ? 'No answer' : r.Status), STATUS);
+  $('#head').innerHTML = `<div class="stat"><b>${replies.length}</b>replies</div>` + st.map(([k, n]) => `<div class="stat"><b>${n}</b>${esc(k)}</div>`).join('');
+  $('#who').textContent = (dupes ? `${dupes} duplicate repl${dupes === 1 ? 'y' : 'ies'} replaced by a later one. ` : '') + 'Voted: ' + replies.map(r => r.name).join(', ');
+  S.push('BUCKS 2027 TALLY', `Replies: ${replies.length} (unique names${dupes ? `, ${dupes} duplicate${dupes === 1 ? "" : "s"} dropped` : ''})`);
+  S.push('Status: ' + st.map(([k, n]) => `${k} ${n}`).join(', '));
+  S.push('Names: ' + replies.map(r => `${r.name} (${r.Status || '-'})`).join(', '));
+  if (onlyIn) S.push("Note: votes from Can't make it are excluded below.");
+
+  // Destinations
+  const known = [...DESTS, ...new Set(voters.flatMap(r => [r['1st'], r['2nd'], ...list(r.No)]).filter(d => d && !isBlank(d) && !DESTS.includes(d)))];
+  const scores = known.map(d => {
+    const f = voters.filter(r => r['1st'] === d).length, s = voters.filter(r => r['2nd'] === d).length, n = voters.filter(r => list(r.No).includes(d)).length;
+    return {d, f, s, n, score: 2 * f + s - n};
+  }).sort((a, b) => b.score - a.score || b.f - a.f || b.s - a.s || a.d.localeCompare(b.d));
+  const win = scores[0], tie = scores[1] && scores[1].score === win.score && scores[1].f === win.f && scores[1].s === win.s;
+  $('#dest').innerHTML = table(scores.map((x, i) => ({win: i === 0, cells: [`${i + 1}. ${x.d}`, x.score, x.f, x.s, x.n]})), ['Destination', 'Score', '1st', '2nd', 'No']) +
+    (tie ? `<p class="warn">Tie at the top: ${esc(scores[1].d)} has the same score and counts.</p>` : '');
+  S.push('', 'DESTINATIONS (2 pts 1st, 1 pt 2nd, -1 No)');
+  scores.forEach((x, i) => S.push(`${i + 1}. ${x.d}: ${x.score} (1st ${x.f}, 2nd ${x.s}, No ${x.n})`));
+  if (tie) S.push(`TIE at the top with ${scores[1].d}`);
+
+  // Budget and arrival
+  const bud = breakdown(voters.map(r => isBlank(r.Budget) ? 'No answer' : r.Budget), BUDGET);
+  const arr = breakdown(voters.map(r => isBlank(r.Arrive) ? 'No answer' : r.Arrive), ARRIVE);
+  $('#budget').innerHTML = table(bud.map(([k, n]) => ({cells: [k, n]})), ['Most they would spend', 'Count']);
+  $('#arrive').innerHTML = table(arr.map(([k, n]) => ({cells: [k, n]})), ['Can get there', 'Count']);
+  S.push('', 'BUDGET: ' + bud.map(([k, n]) => `${k} ${n}`).join(', '));
+  S.push('ARRIVE: ' + arr.map(([k, n]) => `${k} ${n}`).join(', '));
+
+  // Weekend for the winner
+  const wk = voters.filter(r => r.wkDest === win.d);
+  $('#wkHead').textContent = `Weekend plan: ${win.d}`;
+  $('#wkNote').textContent = `From the ${wk.length} ${wk.length === 1 ? 'person' : 'people'} who picked ${win.d} 1st.`;
+  S.push('', `WEEKEND PLAN - ${win.d} (from ${wk.length} who picked it 1st)`);
+  const wrows = SLOTS.map(slot => {
+    const c = [...count(wk.map(r => r.weekend[slot]).filter(v => !isBlank(v))).entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+    if (!c.length) { S.push(`- ${slot}: no picks`); return `<tr><td>${esc(slot)}</td><td class="muted">No picks</td><td class="n">0</td></tr>`; }
+    const tied = c.filter(x => x[1] === c[0][1]).map(x => x[0]), rest = c.slice(tied.length);
+    S.push(`- ${slot}: ${tied.join(' / ')} (${c[0][1]} of ${wk.length}${tied.length > 1 ? ', tie' : ''})` + (rest.length ? `; also ${rest.map(([k, n]) => `${k} ${n}`).join(', ')}` : ''));
+    return `<tr><td>${esc(slot)}</td><td><b>${esc(tied.join(' / '))}</b>${tied.length > 1 ? ' <span class="muted">(tie)</span>' : ''}${rest.length ? `<br><span class="muted">Also: ${esc(rest.map(([k, n]) => `${k} (${n})`).join(', '))}</span>` : ''}</td><td class="n">${c[0][1]}</td></tr>`;
+  });
+  $('#weekend').innerHTML = `<table><thead><tr><th>Slot</th><th>Most picked</th><th class="n">Votes</th></tr></thead><tbody>${wrows.join('')}</tbody></table>`;
+
+  // Must-haves
+  const mh = [...count(voters.flatMap(r => list(r['Must-haves']))).entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  $('#must').innerHTML = mh.length ? table(mh.map(([k, n]) => ({cells: [k, n]})), ['Must-have', 'Count']) : '<p class="muted">None ticked.</p>';
+  S.push('', 'MUST-HAVES: ' + (mh.length ? mh.map(([k, n]) => `${k} ${n}`).join(', ') : 'none'));
+
+  // Notes
+  const notes = replies.filter(r => r.notes);
+  $('#notes').innerHTML = notes.length ? '<ul>' + notes.map(r => `<li><b>${esc(r.name)}:</b> ${esc(r.notes).replace(/\n/g, '<br>')}</li>`).join('') + '</ul>' : '<p class="muted">No notes.</p>';
+  S.push('', 'NOTES');
+  notes.length ? notes.forEach(r => S.push(`- ${r.name}: ${r.notes.replace(/\n+/g, ' / ')}`)) : S.push('- none');
+
+  $('#summary').textContent = S.join('\n');
+  $('#copyMsg').textContent = '';
+  $('#out').hidden = false;
+}
+
+$('#go').addEventListener('click', tally);
+$('#onlyIn').addEventListener('change', () => { if (!$('#out').hidden) tally(); });
+$('#copy').addEventListener('click', async () => {
+  const t = $('#summary').textContent;
+  try { await navigator.clipboard.writeText(t); $('#copyMsg').textContent = 'Copied.'; }
+  catch (e) {
+    const r = document.createRange(); r.selectNodeContents($('#summary'));
+    const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+    $('#copyMsg').textContent = 'Selected. Copy it manually.';
+  }
+});
+</script>
+</body>
+</html>

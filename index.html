@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0f4a32" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c1411" media="(prefers-color-scheme: dark)">
+<title>Bucks 2027 Vote</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f1f4f2;
+  --surface:#ffffff;
+  --surface-2:#e8eeea;
+  --text:#14201a;
+  --muted:#56655d;
+  --line:#d3ddd7;
+  --green:#0f4a32;
+  --green-ink:#ffffff;
+  --green-soft:#dcebe2;
+  --gold:#c39a1d;
+  --gold-soft:#fbf1d2;
+  --gold-ink:#3a2c00;
+  --wa:#1a8f4c;
+  --wa-ink:#ffffff;
+  --focus:#c39a1d;
+  --shadow:0 1px 2px rgba(15,40,28,.06),0 4px 14px rgba(15,40,28,.06);
+  --r:14px;
+  --head:"Bricolage Grotesque",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --body:"Figtree",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0c1411;
+    --surface:#14201b;
+    --surface-2:#1b2a23;
+    --text:#e5ece8;
+    --muted:#9aaba2;
+    --line:#2a3b33;
+    --green:#3a9e6e;
+    --green-ink:#06120c;
+    --green-soft:#1a3328;
+    --gold:#e2bb45;
+    --gold-soft:#2e2712;
+    --gold-ink:#1d1600;
+    --wa:#25b45f;
+    --wa-ink:#04140a;
+    --focus:#e2bb45;
+    --shadow:none;
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);font-size:17px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 48px}
+h1,h2,h3{font-family:var(--head);line-height:1.12;margin:0;letter-spacing:-.01em}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:8px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* Header */
+header.hero{background:var(--green);color:#fff;padding:28px 0 26px;margin-bottom:20px;border-bottom:4px solid var(--gold)}
+@media (prefers-color-scheme: dark){header.hero{background:#10301f;color:var(--text)}}
+.hero .wrap{padding-bottom:0}
+.eyebrow{font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+.hero h1{font-size:clamp(30px,8vw,46px);font-weight:800}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 12px;padding:0;list-style:none}
+.pills li{font-size:14px;font-weight:600;padding:5px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08)}
+.hero .lede{margin:0;font-size:16px;opacity:.9}
+
+/* Steps */
+.step{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:20px 16px 22px;margin:0 0 18px}
+@media (min-width:600px){.step{padding:24px 24px 26px}}
+.step-head{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.badge-num{flex:none;width:38px;height:38px;border-radius:50%;background:var(--green);color:var(--green-ink);font-family:var(--head);font-weight:800;font-size:19px;display:grid;place-items:center;box-shadow:inset 0 0 0 3px var(--gold)}
+.step-head h2{font-size:24px;font-weight:800}
+.hint{color:var(--muted);font-size:15px;margin:-6px 0 14px}
+
+/* Fields */
+.field{margin:0 0 18px;border:0;padding:0;min-width:0}
+.field:last-child{margin-bottom:0}
+.label,legend{display:block;font-weight:700;font-size:16px;margin:0 0 8px;padding:0}
+.sub{display:block;font-weight:500;color:var(--muted);font-size:14px}
+input[type=text],select,textarea{width:100%;font:inherit;font-size:17px;color:var(--text);background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;min-height:48px}
+textarea{min-height:96px;resize:vertical}
+select{appearance:none;-webkit-appearance:none;padding-right:40px;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 14px) 50%;background-size:6px 6px;background-repeat:no-repeat}
+input[type=text]:focus,select:focus,textarea:focus{border-color:var(--green)}
+.req{color:var(--gold);font-weight:800}
+.err{color:#b3261e;font-size:14px;font-weight:600;margin:6px 0 0;display:none}
+@media (prefers-color-scheme: dark){.err{color:#ff8a80}}
+.err.show{display:block}
+
+/* Choice chips (radio) */
+.chips{display:grid;gap:8px;grid-template-columns:1fr}
+.chips.c2{grid-template-columns:repeat(2,1fr)}
+@media (min-width:480px){.chips.c3{grid-template-columns:repeat(3,1fr)}}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;margin:0;width:100%;height:100%;cursor:pointer}
+.chip span{display:flex;align-items:center;justify-content:center;text-align:center;min-height:48px;padding:8px 12px;border:1.5px solid var(--line);border-radius:10px;font-weight:600;background:var(--surface)}
+.chip input:checked + span{background:var(--green);border-color:var(--green);color:var(--green-ink)}
+.chip input:focus-visible + span{outline:3px solid var(--focus);outline-offset:2px}
+
+/* Destination cards */
+.cards{display:grid;gap:14px}
+.card{position:relative;border:1.5px solid var(--line);border-radius:var(--r);padding:16px;background:var(--surface)}
+.card.is-first{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft);background:linear-gradient(var(--gold-soft),var(--surface) 90px)}
+.card.is-no{opacity:.62}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.card h3{font-size:24px;font-weight:800}
+.cost{flex:none;font-weight:700;font-size:14px;padding:4px 10px;border-radius:999px;background:var(--green-soft);color:var(--text);white-space:nowrap}
+.tagline{margin:6px 0 12px;color:var(--muted);font-size:15.5px}
+.firstbadge{display:none;position:absolute;top:-12px;left:14px;background:var(--gold);color:var(--gold-ink);font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:999px}
+.card.is-first .firstbadge{display:block}
+.form{margin:0 0 14px;display:grid;gap:0;border-top:1px dashed var(--line)}
+.form div{display:grid;grid-template-columns:92px 1fr;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:15px}
+.form dt{font-weight:700;color:var(--muted);font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
+.form dd{margin:0}
+.rank{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.rank button{font:inherit;font-weight:700;font-size:15px;min-height:48px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface-2);color:var(--text);cursor:pointer;padding:6px 4px}
+.rank button[aria-pressed=true][data-rank="1"]{background:var(--gold);border-color:var(--gold);color:var(--gold-ink)}
+.rank button[aria-pressed=true][data-rank="2"]{background:var(--green);border-color:var(--green);color:var(--green-ink)}
+.rank button[aria-pressed=true][data-rank="no"]{background:var(--text);border-color:var(--text);color:var(--surface)}
+
+/* Weekend */
+.slot{margin:0 0 16px}
+.slot .other{margin-top:8px}
+.slot .other[hidden]{display:none}
+.empty{padding:16px;border:1.5px dashed var(--line);border-radius:10px;color:var(--muted);text-align:center;margin:0 0 18px}
+.dest-name{color:var(--green)}
+@media (prefers-color-scheme: dark){.dest-name{color:var(--gold)}}
+.checks{display:grid;grid-template-columns:1fr;gap:8px}
+@media (min-width:480px){.checks{grid-template-columns:1fr 1fr}}
+.check{display:flex;align-items:center;gap:12px;min-height:48px;padding:8px 12px;border:1.5px solid var(--line);border-radius:10px;cursor:pointer;font-weight:600;font-size:15.5px}
+.check input{width:22px;height:22px;flex:none;accent-color:var(--green);margin:0}
+.check:has(input:checked){border-color:var(--green);background:var(--green-soft)}
+
+/* Send */
+.preview{font-family:var(--mono);font-size:13.5px;line-height:1.5;white-space:pre-wrap;word-break:break-word;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:14px;margin:0 0 16px;max-height:420px;overflow:auto;user-select:text;-webkit-user-select:text}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:56px;border-radius:12px;font:inherit;font-weight:800;font-size:18px;text-decoration:none;border:0;cursor:pointer;padding:12px 16px}
+.btn-wa{background:var(--wa);color:var(--wa-ink)}
+.btn-copy{background:transparent;color:var(--text);border:1.5px solid var(--line);margin-top:10px;font-size:16px;min-height:50px}
+.btn[aria-disabled=true],.btn:disabled{background:var(--surface-2);color:var(--muted);cursor:not-allowed;border:1.5px dashed var(--line)}
+.status{min-height:22px;margin:10px 0 0;font-size:15px;font-weight:600;text-align:center}
+.need-name{display:none;text-align:center;margin:10px 0 0;font-weight:700;color:#b3261e}
+@media (prefers-color-scheme: dark){.need-name{color:#ff8a80}}
+.need-name.show{display:block}
+.need-name button{font:inherit;color:inherit;background:none;border:0;text-decoration:underline;cursor:pointer;padding:8px;min-height:44px}
+
+footer{color:var(--muted);font-size:14px;padding:4px 4px 0}
+footer p{margin:0 0 8px}
+.reset{font:inherit;font-size:14px;color:var(--muted);background:none;border:0;text-decoration:underline;padding:10px 0;min-height:44px;cursor:pointer}
+
+@media (prefers-reduced-motion: no-preference){
+  .chip span,.rank button,.card,.check,.btn{transition:background-color .15s,border-color .15s,box-shadow .15s,opacity .15s}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Bucks weekend 2027 · Have your say</p>
+    <h1>Gold Coast, Melbourne or Adelaide?</h1>
+    <ul class="pills" aria-label="Key details">
+      <li>Canberra Day long weekend</li>
+      <li>Sat 6 – Mon 8 March 2027</li>
+      <li>17+ of us</li>
+    </ul>
+    <p class="lede">Takes about two minutes. Your answers save on this phone as you go.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- STEP 1 -->
+<section class="step" aria-labelledby="s1">
+  <div class="step-head"><span class="badge-num" aria-hidden="true">1</span><h2 id="s1">You</h2></div>
+
+  <div class="field">
+    <label class="label" for="name">Your name <span class="req" aria-hidden="true">*</span></label>
+    <input type="text" id="name" autocomplete="given-name" maxlength="40" required aria-describedby="nameErr" placeholder="e.g. Dave">
+    <p class="err" id="nameErr">Add your name so Ben knows who voted.</p>
+  </div>
+
+  <fieldset class="field">
+    <legend>Are you in?</legend>
+    <div class="chips c3" data-group="status"></div>
+  </fieldset>
+
+  <fieldset class="field">
+    <legend>Most you'd spend <span class="sub">Flights + accommodation + activities. Not drinks.</span></legend>
+    <div class="chips c2" data-group="budget"></div>
+  </fieldset>
+
+  <fieldset class="field">
+    <legend>When can you get there?</legend>
+    <div class="chips c3" data-group="arrive"></div>
+  </fieldset>
+</section>
+
+<!-- STEP 2 -->
+<section class="step" aria-labelledby="s2">
+  <div class="step-head"><span class="badge-num" aria-hidden="true">2</span><h2 id="s2">Rank the destinations</h2></div>
+  <p class="hint">Pick a 1st and a 2nd. Tap a selected button again to clear it.</p>
+  <div class="cards" id="cards"></div>
+</section>
+
+<!-- STEP 3 -->
+<section class="step" aria-labelledby="s3">
+  <div class="step-head"><span class="badge-num" aria-hidden="true">3</span><h2 id="s3">Build your weekend<span id="s3dest"></span></h2></div>
+  <p class="hint" id="s3hint">Each slot starts on the suggested plan. Change anything you like.</p>
+  <div id="slots"></div>
+
+  <fieldset class="field">
+    <legend>Must-haves <span class="sub">Tick anything you'd be gutted to miss.</span></legend>
+    <div class="checks" id="must"></div>
+  </fieldset>
+
+  <div class="field">
+    <label class="label" for="notes">Anything else? <span class="sub">Ideas, vetoes, dates you can't do</span></label>
+    <textarea id="notes" maxlength="600"></textarea>
+  </div>
+</section>
+
+<!-- STEP 4 -->
+<section class="step" aria-labelledby="s4">
+  <div class="step-head"><span class="badge-num" aria-hidden="true">4</span><h2 id="s4">Send it to Ben</h2></div>
+  <p class="hint">This is exactly what gets sent. Please don't edit it in WhatsApp.</p>
+  <pre class="preview" id="preview" aria-label="Message preview" tabindex="0"></pre>
+  <a class="btn btn-wa" id="send" target="_blank" rel="noopener">Send on WhatsApp</a>
+  <button type="button" class="btn btn-copy" id="copy">Copy message</button>
+  <p class="need-name" id="needName"><button type="button" id="goName">Add your name in step 1</button></p>
+  <p class="status" id="status" role="status" aria-live="polite"></p>
+</section>
+
+<footer>
+  <p>Prices are rough per-person estimates for flights, 2–3 nights' shared accommodation and main activities. Nothing is booked yet.</p>
+  <p>The Gold Coast race meeting (Aquis Park, Sat 6 March) is still to be confirmed.</p>
+  <button type="button" class="reset" id="reset">Clear my answers</button>
+</footer>
+</main>
+
+<script>
+/* ===== Settings ===== */
+const BEN_WHATSAPP = '61410039467'; // international format, digits only. Leave '' to let WhatsApp ask which chat.
+const STORE_KEY = 'bucks2027-draft-v1';
+
+/* ===== Step 1 options ===== */
+const STATUS = ['In', 'Probably', "Can't make it"];
+const BUDGET = [
+  {label:'Up to $600', msg:'Up to $600'},
+  {label:'$600–800', msg:'$600-800'},
+  {label:'$800–1,000', msg:'$800-1,000'},
+  {label:'$1,000+', msg:'$1,000+'}
+];
+const ARRIVE = ['Saturday morning', 'Friday night', 'Saturday arvo or later'];
+
+/* ===== Weekend time slots (label shown on page, key used in the message) ===== */
+const SLOTS = [
+  {key:'Saturday daytime',   label:'Saturday daytime'},
+  {key:'Saturday afternoon', label:'Saturday afternoon (3–6pm)'},
+  {key:'Saturday night',     label:'Saturday night'},
+  {key:'Sunday daytime',     label:'Sunday daytime'},
+  {key:'Sunday night',       label:'Sunday night'},
+  {key:'Monday',             label:'Monday'}
+];
+
+const MUST = ['Topless poker', 'Afternoon strippers at the accommodation', 'Strip club late night', 'Race day', 'Boat day', 'Beach club', 'Live bands', 'Watching sport at a pub', 'Adventure activity (skydive, jet ski)'];
+
+/* ===== Destinations =====
+   id: short stable key (don't change once votes are in)
+   slots: one array per SLOTS entry, first option = suggested plan */
+const DESTS = [
+  {
+    id:'gc', name:'Gold Coast', cost:'$700–900',
+    tagline:'Beach clubs by day, Surfers Paradise nightlife by night',
+    info:[
+      ['Races','Aquis Park Saturday meeting (to confirm)'],
+      ['Beach','Burleigh Pavilion, Shark Bar, Surfers beach'],
+      ['Bands','Miami Marketta, Nightjar, Surfers Beer Garden'],
+      ['To finish','Hollywood Showgirls, Orchid Ave'],
+      ['Getting there','1.5 hr flight, about 7 direct a week from Canberra']
+    ],
+    slots:[
+      ['Long lunch at Burleigh Pavilion beach club','Races at Aquis Park','Jet skis or jet boat','Skydive onto the beach at Coolangatta (~$425)','Go-karts, paintball and golf with waitresses'],
+      ['Topless poker + strip show at the apartment','Afternoon strippers at the apartment','Pool and beach, save it for tonight'],
+      ['Dinner, pub crawl, Orchid Ave clubs, Hollywood Showgirls late','Surfers Beer Garden bands, then clubs','Big dinner, then straight to Hollywood Showgirls'],
+      ['Private boat cruise with drinks and topless waitresses','Shark Bar at North Burleigh for beach and bands','Surf lesson or eFoil','Dreamworld / WhiteWater World'],
+      ['Miami Marketta live music, then Surfers',"Burleigh bands at Nightjar or Mo's Desert Clubhouse",'Quiet one'],
+      ['Late breakfast, swim, fly home','Fly home early']
+    ]
+  },
+  {
+    id:'mel', name:'Melbourne', cost:'$600–800',
+    tagline:'Biggest race day of the weekend, best bars and band rooms',
+    info:[
+      ['Races','Super Saturday at Flemington, Sat 6 Mar: Newmarket Handicap + All Star Mile'],
+      ['Beach','St Kilda beach bars'],
+      ['Bands','Cherry Bar, Corner Hotel, the Espy, Moomba on the Yarra (4–8 Mar)'],
+      ['To finish','CBD strip clubs, e.g. Centrefold Lounge'],
+      ['Getting there','1 hr flight, many daily']
+    ],
+    slots:[
+      ['Super Saturday at Flemington','St Kilda beach and beach bars','Moomba on the Yarra','Golden Plains festival at Meredith (camping, whole weekend)'],
+      ['Stay at the races','Topless poker + strip show at the apartment','Afternoon strippers at the apartment'],
+      ['Laneway bars, Cherry Bar bands, strip club late','Corner Hotel bands, then CBD clubs','Rooftop bars, then a strip club'],
+      ['Topless poker + strip show in a hotel suite','Moomba Birdman Rally and river bars','St Kilda beach and the Espy'],
+      ['St Kilda beach bars and bands at the Espy','Moomba fireworks, then CBD clubs','Quiet one'],
+      ['Recovery brunch, fly home','Fly home early']
+    ]
+  },
+  {
+    id:'adl', name:'Adelaide', cost:'$600–800',
+    tagline:'Fringe every night, WOMADelaide, Adelaide Cup on Monday',
+    info:[
+      ['Races','Adelaide Cup at Morphettville, Mon 8 Mar (SA public holiday)'],
+      ['Beach','Glenelg, tram from the city'],
+      ['Bands','Fringe venues (19 Feb–21 Mar) + WOMADelaide (5–8 Mar)'],
+      ['To finish','Hindley Street clubs and strip clubs'],
+      ['Getting there','1.5 hr direct flight']
+    ],
+    slots:[
+      ['Glenelg beach and beach pubs','Winery bus to McLaren Vale or the Barossa','Afternoon Fringe comedy'],
+      ['Topless poker + strip show at the apartment','Afternoon strippers at the apartment','Keep drinking at Glenelg'],
+      ['Rundle St dinner, Fringe gardens, Hindley St, strip club late','Fringe comedy show, then bars','Straight to Hindley Street'],
+      ['WOMADelaide in Botanic Park','Fringe shows and rooftop bars','Glenelg beach again'],
+      ['Second big night on the Fringe','Quiet one before Cup Day'],
+      ['Adelaide Cup at Morphettville (fly home Tuesday)',"Cup Day, leave before the main race",'Fly home early']
+    ]
+  }
+];
+
+/* ===== State ===== */
+const $ = s => document.querySelector(s);
+const byId = id => DESTS.find(d => d.id === id);
+function blank(){
+  const s = {name:'', status:'', budget:'', arrive:'', rank:{}, picks:{}, other:{}, must:[], notes:''};
+  DESTS.forEach(d => { s.rank[d.id] = ''; s.picks[d.id] = SLOTS.map(() => 0); s.other[d.id] = SLOTS.map(() => ''); });
+  return s;
+}
+let S = blank();
+function load(){
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (!raw) return;
+    const d = JSON.parse(raw), b = blank();
+    S = Object.assign(b, d);
+    // repair anything that no longer fits the data (e.g. options edited since)
+    DESTS.forEach(dest => {
+      S.rank[dest.id] = ['1','2','no'].includes((d.rank||{})[dest.id]) ? d.rank[dest.id] : '';
+      S.picks[dest.id] = SLOTS.map((_, i) => { const v = ((d.picks||{})[dest.id]||[])[i]; return v === 'other' || (Number.isInteger(v) && v >= 0 && v < dest.slots[i].length) ? v : 0; });
+      S.other[dest.id] = SLOTS.map((_, i) => String(((d.other||{})[dest.id]||[])[i] || ''));
+    });
+    S.must = Array.isArray(d.must) ? d.must.filter(m => MUST.includes(m)) : [];
+    if (!STATUS.includes(S.status)) S.status = '';
+    if (!BUDGET.some(b => b.msg === S.budget)) S.budget = '';
+    if (!ARRIVE.includes(S.arrive)) S.arrive = '';
+  } catch (e) { S = blank(); }
+}
+function save(){ try { localStorage.setItem(STORE_KEY, JSON.stringify(S)); } catch (e) {} }
+
+/* ===== Build Step 1 ===== */
+function chips(group, items){
+  const box = document.querySelector(`[data-group="${group}"]`);
+  box.innerHTML = '';
+  items.forEach(it => {
+    const value = typeof it === 'string' ? it : it.msg, label = typeof it === 'string' ? it : it.label;
+    const l = document.createElement('label'); l.className = 'chip';
+    const i = document.createElement('input'); i.type = 'radio'; i.name = group; i.value = value; i.checked = S[group] === value;
+    i.addEventListener('change', () => { S[group] = value; update(); });
+    const sp = document.createElement('span'); sp.textContent = label;
+    l.append(i, sp); box.append(l);
+  });
+}
+
+/* ===== Build Step 2 ===== */
+function buildCards(){
+  const box = $('#cards'); box.innerHTML = '';
+  DESTS.forEach(d => {
+    const c = document.createElement('article'); c.className = 'card'; c.id = 'card-' + d.id;
+    c.setAttribute('aria-labelledby', 'h-' + d.id);
+    c.innerHTML = `<span class="firstbadge">Your 1st choice</span>
+      <div class="card-top"><h3 id="h-${d.id}"></h3><span class="cost"></span></div>
+      <p class="tagline"></p><dl class="form"></dl>
+      <div class="rank" role="group" aria-label="Rank ${d.name}"></div>`;
+    c.querySelector('h3').textContent = d.name;
+    c.querySelector('.cost').textContent = d.cost + ' pp';
+    c.querySelector('.tagline').textContent = d.tagline;
+    const dl = c.querySelector('dl');
+    d.info.forEach(([k, v]) => { const row = document.createElement('div'); const dt = document.createElement('dt'); dt.textContent = k; const dd = document.createElement('dd'); dd.textContent = v; row.append(dt, dd); dl.append(row); });
+    const r = c.querySelector('.rank');
+    [['1','1st choice'],['2','2nd choice'],['no','No thanks']].forEach(([val, txt]) => {
+      const b = document.createElement('button'); b.type = 'button'; b.dataset.rank = val; b.textContent = txt;
+      b.setAttribute('aria-label', `${txt}: ${d.name}`);
+      b.addEventListener('click', () => setRank(d.id, val));
+      r.append(b);
+    });
+    box.append(c);
+  });
+}
+function setRank(id, val){
+  if (S.rank[id] === val) { S.rank[id] = ''; }
+  else {
+    if (val === '1' || val === '2') DESTS.forEach(d => { if (S.rank[d.id] === val) S.rank[d.id] = ''; });
+    S.rank[id] = val;
+  }
+  update();
+}
+const firstId = () => (DESTS.find(d => S.rank[d.id] === '1') || {}).id || '';
+
+/* ===== Build Step 3 ===== */
+let builtFor = null;
+function buildSlots(){
+  const f = firstId(), box = $('#slots');
+  if (f === builtFor) return;
+  builtFor = f; box.innerHTML = '';
+  if (!f) {
+    $('#s3dest').textContent = '';
+    $('#s3hint').hidden = true;
+    box.innerHTML = '<p class="empty">Pick your 1st choice in step 2 and your weekend plan appears here.</p>';
+    return;
+  }
+  const d = byId(f);
+  $('#s3dest').innerHTML = ': <span class="dest-name"></span>';
+  $('#s3dest .dest-name').textContent = d.name;
+  $('#s3hint').hidden = false;
+  SLOTS.forEach((slot, i) => {
+    const wrap = document.createElement('div'); wrap.className = 'slot';
+    const sid = `sel-${d.id}-${i}`, oid = `oth-${d.id}-${i}`;
+    const lab = document.createElement('label'); lab.className = 'label'; lab.htmlFor = sid; lab.textContent = slot.label;
+    const sel = document.createElement('select'); sel.id = sid;
+    d.slots[i].forEach((opt, j) => { const o = document.createElement('option'); o.value = String(j); o.textContent = (j === 0 ? opt + ' (suggested)' : opt); sel.append(o); });
+    const oo = document.createElement('option'); oo.value = 'other'; oo.textContent = 'Other (type it)'; sel.append(oo);
+    sel.value = String(S.picks[d.id][i]);
+    const olab = document.createElement('label'); olab.className = 'sr-only'; olab.htmlFor = oid; olab.textContent = `Your idea for ${slot.key}`;
+    const inp = document.createElement('input'); inp.type = 'text'; inp.id = oid; inp.className = 'other'; inp.maxLength = 80; inp.placeholder = `Your idea for ${slot.key.toLowerCase()}`;
+    inp.value = S.other[d.id][i];
+    inp.hidden = S.picks[d.id][i] !== 'other';
+    sel.addEventListener('change', () => {
+      S.picks[d.id][i] = sel.value === 'other' ? 'other' : Number(sel.value);
+      inp.hidden = sel.value !== 'other';
+      if (!inp.hidden) inp.focus();
+      update();
+    });
+    inp.addEventListener('input', () => { S.other[d.id][i] = inp.value; update(); });
+    wrap.append(lab, sel, olab, inp); box.append(wrap);
+  });
+}
+function buildMust(){
+  const box = $('#must'); box.innerHTML = '';
+  MUST.forEach((m, i) => {
+    const l = document.createElement('label'); l.className = 'check';
+    const c = document.createElement('input'); c.type = 'checkbox'; c.value = m; c.checked = S.must.includes(m);
+    c.addEventListener('change', () => { S.must = MUST.filter(x => x === m ? c.checked : S.must.includes(x)); update(); });
+    const t = document.createElement('span'); t.textContent = m;
+    l.append(c, t); box.append(l);
+  });
+}
+
+/* ===== Message ===== */
+// Plain ASCII-ish, one value per line, so it survives WhatsApp and parses cleanly.
+function clean(s){
+  return String(s || '')
+    .replace(/[‘’ʼ]/g, "'").replace(/[“”]/g, '"')
+    .replace(/[–—]/g, '-').replace(/…/g, '...')
+    .replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{200D}]/gu, '');
+}
+const one = s => clean(s).replace(/\s+/g, ' ').trim();
+function buildMessage(){
+  const f = firstId(), sec = (DESTS.find(d => S.rank[d.id] === '2') || {}).name || '-';
+  const no = DESTS.filter(d => S.rank[d.id] === 'no').map(d => d.name);
+  const L = [];
+  L.push(`BUCKS VOTE v1 - ${one(S.name) || '(add your name)'}`);
+  L.push(`Status: ${S.status || '-'}`);
+  L.push(`1st: ${f ? byId(f).name : '-'}`);
+  L.push(`2nd: ${sec}`);
+  L.push(`No: ${no.length ? no.join(', ') : '-'}`);
+  L.push(`Budget: ${S.budget || '-'}`);
+  L.push(`Arrive: ${S.arrive || '-'}`);
+  L.push('');
+  L.push(`My weekend (${f ? byId(f).name : '-'}):`);
+  SLOTS.forEach((slot, i) => {
+    let pick = '-';
+    if (f) {
+      const d = byId(f), v = S.picks[f][i];
+      if (v === 'other') { const t = one(S.other[f][i]); pick = t ? 'Other: ' + t : 'Other'; }
+      else pick = clean(d.slots[i][v]);
+    }
+    L.push(`- ${slot.key}: ${pick}`);
+  });
+  L.push('');
+  L.push(`Must-haves: ${S.must.length ? S.must.join(', ') : '-'}`);
+  const notes = clean(S.notes).replace(/\r/g, '').split('\n').map(l => l.trim())
+    .map(l => /^end$/i.test(l) ? l + '.' : l).join('\n').replace(/\n{3,}/g, '\n\n').trim();
+  if (notes) L.push(`Notes: ${notes}`);
+  L.push('END');
+  return L.join('\n');
+}
+function waLink(msg){
+  const num = String(BEN_WHATSAPP).replace(/\D/g, '');
+  return (num ? `https://wa.me/${num}` : 'https://wa.me/') + '?text=' + encodeURIComponent(msg);
+}
+
+/* ===== Render ===== */
+function update(){
+  DESTS.forEach(d => {
+    const c = document.getElementById('card-' + d.id), r = S.rank[d.id];
+    c.classList.toggle('is-first', r === '1');
+    c.classList.toggle('is-no', r === 'no');
+    c.querySelectorAll('.rank button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.rank === r)));
+  });
+  buildSlots();
+  const msg = buildMessage();
+  $('#preview').textContent = msg;
+  const ok = one(S.name).length > 0, send = $('#send');
+  if (ok) { send.href = waLink(msg); send.removeAttribute('aria-disabled'); send.removeAttribute('tabindex'); }
+  else { send.removeAttribute('href'); send.setAttribute('aria-disabled', 'true'); send.setAttribute('tabindex', '-1'); }
+  $('#copy').disabled = !ok;
+  $('#needName').classList.toggle('show', !ok);
+  save();
+}
+
+/* ===== Events ===== */
+function init(){
+  load();
+  chips('status', STATUS); chips('budget', BUDGET); chips('arrive', ARRIVE);
+  buildCards(); buildMust();
+  const name = $('#name'), notes = $('#notes');
+  name.value = S.name; notes.value = S.notes;
+  name.addEventListener('input', () => { S.name = name.value; if (one(S.name)) $('#nameErr').classList.remove('show'); update(); });
+  notes.addEventListener('input', () => { S.notes = notes.value; update(); });
+  $('#goName').addEventListener('click', () => { $('#nameErr').classList.add('show'); name.scrollIntoView({block:'center'}); name.focus({preventScroll:true}); });
+  $('#send').addEventListener('click', e => { if (!one(S.name)) { e.preventDefault(); $('#goName').click(); } else setStatus('Opening WhatsApp…'); });
+  $('#copy').addEventListener('click', copyMsg);
+  $('#reset').addEventListener('click', () => {
+    if (!confirm('Clear all your answers on this phone?')) return;
+    try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+    S = blank(); builtFor = null; init2();
+  });
+  update();
+}
+function init2(){ // rebuild after reset
+  chips('status', STATUS); chips('budget', BUDGET); chips('arrive', ARRIVE); buildMust();
+  $('#name').value = ''; $('#notes').value = ''; update(); setStatus('Cleared.');
+}
+function setStatus(t){ $('#status').textContent = t; }
+async function copyMsg(){
+  const msg = buildMessage();
+  try {
+    if (!navigator.clipboard || !window.isSecureContext) throw new Error('no clipboard');
+    await navigator.clipboard.writeText(msg);
+    setStatus('Copied. Paste it into WhatsApp to Ben.');
+  } catch (e) {
+    const pre = $('#preview'), range = document.createRange();
+    range.selectNodeContents(pre);
+    const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+    pre.focus();
+    setStatus("Couldn't copy automatically. The message is selected: copy it, then paste it to Ben.");
+  }
+}
+init();
+</script>
+</body>
+</html>
