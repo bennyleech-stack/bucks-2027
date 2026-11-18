@@ -9,7 +9,7 @@ Status: <In|Probably|Can't make it|->
 1st: <Gold Coast|Melbourne|Adelaide|->
 2nd: <Gold Coast|Melbourne|Adelaide|->
 No: <comma-separated destinations, or ->
-Budget: <Up to $600|$600-800|$800-1,000|$1,000+|->
+Budget: <Under $700|$700-850|$850-1,000|$1,000+|->
 Arrive: <Saturday morning|Friday night|Saturday arvo or later|->
 
 My weekend (<1st choice destination, or ->):
@@ -33,7 +33,7 @@ END
 - **Name**: everything after `BUCKS VOTE v1 - ` on the first line. De-duplicate case-insensitively;
   **the latest reply for a name wins**.
 - **`-`** always means "not answered" / "none".
-- **Plain text only**: no emoji. Hyphens are plain `-` (budget is `$600-800`, not an en dash). Apostrophes are `'`.
+- **Plain text only**: no emoji. Hyphens are plain `-` (budget is `$700-850`, not an en dash). Apostrophes are `'`.
 - **Field order** is fixed as shown. The blank lines are there for readability; ignore them.
 - **My weekend**: the destination in brackets is the sender's 1st choice. If they have no 1st choice it is `-`
   and every slot is `-`.
@@ -66,7 +66,7 @@ Status: In
 1st: Melbourne
 2nd: Gold Coast
 No: Adelaide
-Budget: $600-800
+Budget: $700-850
 Arrive: Friday night
 
 My weekend (Melbourne):
