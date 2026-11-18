@@ -39,7 +39,7 @@ END
   and every slot is `-`.
 - **Picks**: either one of that destination's preset options (text exactly as listed in `index.html`), or
   `Other: <their text>`, or just `Other` if they chose Other and typed nothing.
-- **Must-haves** options: Topless poker, Afternoon strippers at the accommodation, Strip club late night,
+- **Must-haves** options: Winery day, Topless poker, Afternoon strippers at the accommodation, Strip club late night,
   Race day, Boat day, Beach club, Live bands, Watching sport at a pub, Adventure activity (skydive, jet ski).
   The last one contains a comma inside brackets, so split the list on commas that are **not inside brackets**.
 - **Notes**: optional. The line is omitted when empty. It may span several lines; everything from `Notes:` up

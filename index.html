@@ -312,6 +312,7 @@ footer p{margin:0 0 8px}
 /* ===== Settings ===== */
 const BEN_WHATSAPP = '61410039467'; // international format, digits only. Leave '' to let WhatsApp ask which chat.
 const STORE_KEY = 'bucks2027-draft-v1';
+const DATA_VER = 2; // bump when a destination's slot options are reordered, so old saved picks reset
 
 /* ===== Step 1 options ===== */
 const STATUS = ['In', 'Probably', "Can't make it"];
@@ -333,7 +334,7 @@ const SLOTS = [
   {key:'Monday',             label:'Monday'}
 ];
 
-const MUST = ['Topless poker', 'Afternoon strippers at the accommodation', 'Strip club late night', 'Race day', 'Boat day', 'Beach club', 'Live bands', 'Watching sport at a pub', 'Adventure activity (skydive, jet ski)'];
+const MUST = ['Winery day', 'Topless poker', 'Afternoon strippers at the accommodation', 'Strip club late night', 'Race day', 'Boat day', 'Beach club', 'Live bands', 'Watching sport at a pub', 'Adventure activity (skydive, jet ski)'];
 
 /* ===== Destinations =====
    id: short stable key (don't change once votes are in)
@@ -379,8 +380,9 @@ const DESTS = [
   },
   {
     id:'adl', name:'Adelaide', cost:'$600–800', silk:['#9b1f33','#f1d36b'],
-    tagline:'Fringe every night, WOMADelaide, Adelaide Cup on Monday',
+    tagline:'Barossa wineries by day, Fringe and Hindley Street by night, Adelaide Cup on Monday',
     info:[
+      ['Wineries','Barossa (~1 hr), McLaren Vale (~45 min) or Adelaide Hills (~30 min) on a private bus'],
       ['Races','Adelaide Cup at Morphettville, Mon 8 Mar (SA public holiday)'],
       ['Beach','Glenelg, tram from the city'],
       ['Bands','Fringe venues (19 Feb–21 Mar) + WOMADelaide (5–8 Mar)'],
@@ -388,11 +390,11 @@ const DESTS = [
       ['Getting there','1.5 hr direct flight']
     ],
     slots:[
-      ['Glenelg beach and beach pubs','Winery bus to McLaren Vale or the Barossa','Afternoon Fringe comedy'],
-      ['Topless poker + strip show at the apartment','Afternoon strippers at the apartment','Keep drinking at Glenelg'],
+      ['Barossa winery bus: cellar doors and a long lunch','McLaren Vale winery bus, including the d\'Arenberg Cube','Glenelg beach and beach pubs','Afternoon Fringe comedy'],
+      ['Back from the Barossa: topless poker + strip show at the apartment','Back from the wineries: afternoon strippers at the apartment','Stay out at the wineries until dark','Keep drinking at Glenelg'],
       ['Rundle St dinner, Fringe gardens, Hindley St, strip club late','Fringe comedy show, then bars','Straight to Hindley Street'],
-      ['WOMADelaide in Botanic Park','Fringe shows and rooftop bars','Glenelg beach again'],
-      ['Second big night on the Fringe','Quiet one before Cup Day'],
+      ['WOMADelaide in Botanic Park','Second winery day: Adelaide Hills or McLaren Vale','Fringe shows and rooftop bars','Glenelg beach again'],
+      ['Second big night on the Fringe','City wine bars, then Hindley Street','Quiet one before Cup Day'],
       ['Adelaide Cup at Morphettville (fly home Tuesday)',"Cup Day, leave before the main race",'Fly home early']
     ]
   }
@@ -402,7 +404,7 @@ const DESTS = [
 const $ = s => document.querySelector(s);
 const byId = id => DESTS.find(d => d.id === id);
 function blank(){
-  const s = {name:'', status:'', budget:'', arrive:'', rank:{}, picks:{}, other:{}, must:[], notes:''};
+  const s = {dataVer:DATA_VER, name:'', status:'', budget:'', arrive:'', rank:{}, picks:{}, other:{}, must:[], notes:''};
   DESTS.forEach(d => { s.rank[d.id] = ''; s.picks[d.id] = SLOTS.map(() => 0); s.other[d.id] = SLOTS.map(() => ''); });
   return s;
 }
@@ -419,6 +421,8 @@ function load(){
       S.picks[dest.id] = SLOTS.map((_, i) => { const v = ((d.picks||{})[dest.id]||[])[i]; return v === 'other' || (Number.isInteger(v) && v >= 0 && v < dest.slots[i].length) ? v : 0; });
       S.other[dest.id] = SLOTS.map((_, i) => String(((d.other||{})[dest.id]||[])[i] || ''));
     });
+    if (d.dataVer !== DATA_VER) { S.picks.adl = SLOTS.map(() => 0); S.other.adl = SLOTS.map(() => ''); }
+    S.dataVer = DATA_VER;
     S.must = Array.isArray(d.must) ? d.must.filter(m => MUST.includes(m)) : [];
     if (!STATUS.includes(S.status)) S.status = '';
     if (!BUDGET.some(b => b.msg === S.budget)) S.budget = '';
