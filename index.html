@@ -211,6 +211,27 @@ footer p{margin:0 0 8px}
   .rank button:active,.btn:active,.chip:active span{transform:scale(.97)}
   .bar i{transition:width .35s ease}
 }
+
+/* Photos */
+.card-photo{position:relative;margin:0;height:190px;overflow:hidden;background:var(--surface-2)}
+.card-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 18%}
+.card-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--surface) 0%,rgba(0,0,0,0) 45%)}
+.card.is-first .card-photo::after{background:linear-gradient(to top,var(--gold-soft) 0%,rgba(0,0,0,0) 45%)}
+.card.is-first .card-in{background:var(--gold-soft)}
+.card-photo figcaption{position:absolute;z-index:1;left:12px;top:12px;background:rgba(0,0,0,.62);color:#fff;font-size:12.5px;font-weight:700;padding:4px 10px;border-radius:99px}
+@media (min-width:600px){
+  .card{display:grid;grid-template-columns:210px 1fr}
+  .card::before{grid-column:1/-1}
+  .card-photo{height:auto;min-height:100%}
+  .card-photo img{position:absolute;inset:0;object-position:center top}
+  .card-photo::after,.card.is-first .card-photo::after{background:linear-gradient(to left,var(--surface) 0%,rgba(0,0,0,0) 30%)}
+  .card.is-first .card-photo::after{background:linear-gradient(to left,var(--gold-soft) 0%,rgba(0,0,0,0) 30%)}
+}
+.card.is-no .card-photo img{filter:grayscale(1)}
+.toast{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:center;margin:0 0 16px}
+.toast img{width:110px;height:140px;object-fit:cover;object-position:top;border-radius:12px;transform:rotate(-3deg);box-shadow:var(--shadow);border:4px solid var(--surface)}
+.toast p{margin:0;font-family:var(--head);font-weight:800;font-size:22px;line-height:1.15}
+.toast p span{display:block;font-family:var(--body);font-size:15px;font-weight:500;color:var(--muted);margin-top:6px}
 </style>
 </head>
 <body>
@@ -293,6 +314,7 @@ footer p{margin:0 0 8px}
 <!-- STEP 4 -->
 <section class="step" aria-labelledby="s4">
   <div class="step-head"><span class="badge-num" aria-hidden="true">4</span><h2 id="s4"><span class="kicker">Step 4 of 4</span>Send it to Ben</h2></div>
+  <div class="toast"><img src="photos/beer.jpg" alt="JB raising a beer" loading="lazy" decoding="async" width="110" height="140"><p>Cheers. Now send it.<span>JB is counting on you.</span></p></div>
   <p class="hint">This is exactly what gets sent. Please don't edit it in WhatsApp.</p>
   <div class="slip"><div class="slip-head" aria-hidden="true"><span>Your ticket</span><span>BUCKS VOTE v1</span></div><pre class="preview" id="preview" aria-label="Message preview" tabindex="0"></pre></div>
   <a class="btn btn-wa" id="send" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3Z"/></svg>Send on WhatsApp</a>
@@ -342,6 +364,7 @@ const MUST = ['Winery day', 'Topless poker', 'Afternoon strippers at the accommo
 const DESTS = [
   {
     id:'gc', name:'Gold Coast', cost:'$700–900', silk:['#0b7a83','#f4c542'],
+    photo:{src:'photos/flamingo.jpg', caption:'Pool day, Surfers', alt:'JB in sunglasses lounging on a pink flamingo pool float'},
     tagline:'Beach clubs by day, Surfers Paradise nightlife by night',
     info:[
       ['Races','Aquis Park Saturday meeting (to confirm)'],
@@ -361,6 +384,7 @@ const DESTS = [
   },
   {
     id:'mel', name:'Melbourne', cost:'$600–800', silk:['#1c2f55','#ffffff'],
+    photo:{src:'photos/topgun.jpg', caption:'Super Saturday ready', alt:'JB in aviators and a flight jacket'},
     tagline:'Biggest race day of the weekend, best bars and band rooms',
     info:[
       ['Races','Super Saturday at Flemington, Sat 6 Mar: Newmarket Handicap + All Star Mile'],
@@ -380,6 +404,7 @@ const DESTS = [
   },
   {
     id:'adl', name:'Adelaide', cost:'$600–800', silk:['#9b1f33','#f1d36b'],
+    photo:{src:'photos/akubra.jpg', caption:'Barossa bound', alt:'JB in an Akubra hat with a rope over one shoulder'},
     tagline:'Barossa wineries by day, Fringe and Hindley Street by night, Adelaide Cup on Monday',
     info:[
       ['Wineries','Barossa (~1 hr), McLaren Vale (~45 min) or Adelaide Hills (~30 min) on a private bus'],
@@ -452,11 +477,12 @@ function buildCards(){
     const c = document.createElement('article'); c.className = 'card'; c.id = 'card-' + d.id;
     if (d.silk) { c.style.setProperty('--silk', d.silk[0]); c.style.setProperty('--silk-2', d.silk[1]); }
     c.setAttribute('aria-labelledby', 'h-' + d.id);
-    c.innerHTML = `<span class="firstbadge">1st pick</span><div class="card-in">
+    c.innerHTML = `<span class="firstbadge">1st pick</span>${d.photo ? '<figure class="card-photo"><img alt="" loading="lazy" decoding="async"><figcaption></figcaption></figure>' : ''}<div class="card-in">
       <div class="card-top"><span class="cloth" aria-hidden="true">${n + 1}</span><h3 id="h-${d.id}"></h3>
       <div class="price"><span>Est. pp</span><b class="cost"></b></div><p class="tagline"></p></div>
       <dl class="form"></dl>
       <div class="rank" role="group" aria-label="Rank ${d.name}"></div></div>`;
+    if (d.photo) { const im = c.querySelector('.card-photo img'); im.src = d.photo.src; im.alt = d.photo.alt; c.querySelector('figcaption').textContent = d.photo.caption; }
     c.querySelector('h3').textContent = d.name;
     c.querySelector('.cost').textContent = d.cost;
     c.querySelector('.tagline').textContent = d.tagline;

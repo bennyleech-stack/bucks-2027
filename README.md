@@ -20,6 +20,7 @@ Everything lives in the `<script>` block near the bottom of `index.html`.
   - `id`: short key used for saved drafts. Don't change it once people have started voting.
   - `name`: shown on the page and sent in the reply. If you rename one, update `DESTS` in `tally.html` too.
   - `cost`, `tagline`, and `info` (the race-card rows: `[label, text]` pairs).
+  - `photo`: `{src, caption, alt}` for the banner photo on the card. Photos live in `photos/`. Remove `photo` to hide it.
   - `slots`: six arrays of options, one per time slot, in the order of `SLOTS`. **The first option in each
     array is the suggested plan** and is what every dropdown starts on. "Other (type it)" is added automatically.
 - **Time slots**: `SLOTS`. `key` is what's sent in the reply; `label` is what's shown. Keep the keys in step
